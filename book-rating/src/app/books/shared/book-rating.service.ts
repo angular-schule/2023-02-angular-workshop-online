@@ -9,7 +9,9 @@ export class BookRatingService {
   constructor() { }
 
   rateUp(book: Book): Book {
-    return book; // TODO
+    // arbeitet nicht immutable!
+    book.rating++;
+    return book;
   }
 
   rateDown(book: Book): Book {
