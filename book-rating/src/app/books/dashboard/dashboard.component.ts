@@ -19,7 +19,6 @@ export class DashboardComponent {
   rs3 = getService()
 
   constructor(private rs: BookRatingService) {
-    console.log(rs);
     this.books = [
       {
         isbn: '123',
@@ -49,6 +48,7 @@ export class DashboardComponent {
   }
 
   private updateList(ratedBook: Book) {
+
     // const result = [1,2,3,4,5].map(e => e * 10) // [10, 20, 30, 40, 50] // Projektion
     // const result2 = [1,2,3,4,5,6,7].filter(e => e >= 5) // [5, 6, 7] // Prädikatsfunktion
 
