@@ -11,8 +11,7 @@ function getService() {
 @Component({
   selector: 'br-dashboard',
   templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent {
   books: Book[] = [];

@@ -1,0 +1,13 @@
+<ng-container *ngIf="book; else loading">
+  <h2>{{ book.title }}</h2>
+  <p>{{ book.description }}</p>
+</ng-container>
+
+<ng-template #loading>
+<p>Loading …</p>
+</ng-template>
+
+<hr>
+
+<a routerLink="/books">Zum Dashboard</a><br>
+<a routerLink="/books/9783864909467">Zum Angular-Buch</a><br>
