@@ -16,6 +16,7 @@ export class BookDetailsComponent {
     // const isbn = this.route.snapshot.paramMap.get('isbn'); // path: 'books/:isbn'
 
     // Asynchroner Weg / PUSH
+    // TODO: Verschachtelte Subscription auflösen
     this.route.paramMap.subscribe(params => {
       const isbn = params.get('isbn')!; // Non-Null Assertion
       this.bs.getSingle(isbn).subscribe(book => {

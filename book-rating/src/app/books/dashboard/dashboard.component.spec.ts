@@ -1,5 +1,6 @@
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { of } from 'rxjs';
 import { Book } from '../shared/book';
 import { BookRatingService } from '../shared/book-rating.service';
 
@@ -15,14 +16,22 @@ describe('DashboardComponent', () => {
       rateDown: (book: Book) => book,
     };
 
+    /*const storeMock = {
+      getAll: () => of([])
+    };*/
+
+    /*const routeMock = {
+      paramMap: of({ get: (key: string) => '123' })
+    }*/
+
     await TestBed.configureTestingModule({
       declarations: [ DashboardComponent,  ],
       providers: [
         // BRS ersetzen: immer wenn BRS angefordert wird, wird stattdessen ratingMock ausgeliefert
-       /* {
+       {
           provide: BookRatingService,
           useValue: ratingMock
-        }*/
+        }
       ],
       schemas: [NO_ERRORS_SCHEMA] // Shallow Component Test
     })
@@ -44,8 +53,8 @@ describe('DashboardComponent', () => {
     // Service anfordern (das ist tatsächlich unser ratingMock!)
     const rs = TestBed.inject(BookRatingService);
 
-     // Buch
-     const book = { isbn: '123', title: 'TESTBUCH' } as Book; // Type Assertion (Vorsicht!)
+    // Buch
+    const book = { isbn: '123', title: 'TESTBUCH' } as Book; // Type Assertion (Vorsicht!)
 
     // Service/Mock überwachen
     // spyOn(rs, 'rateUp').and.returnValue(book);
