@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'br-book-create',
@@ -6,9 +7,11 @@ import { Component } from '@angular/core';
   styleUrls: ['./book-create.component.scss']
 })
 export class BookCreateComponent {
-  myText = 'Hallo Welt';
-  book = {
-    title: '',
-    isbn: ''
-  }
+  bookForm = new FormGroup({
+    isbn: new FormControl('', { nonNullable: true }),
+    title: new FormControl('', { nonNullable: true }),
+    description: new FormControl('', { nonNullable: true }),
+    rating: new FormControl(1, { nonNullable: true }),
+    price: new FormControl(0, { nonNullable: true }),
+  });
 }

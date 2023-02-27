@@ -8,7 +8,7 @@ import { RatingComponent } from '../shared/rating/rating.component';
 import { BookDetailsComponent } from './book-details/book-details.component';
 import { BookCreateComponent } from './book-create/book-create.component';
 import { BookSearchComponent } from './book-search/book-search.component';
-import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -22,7 +22,7 @@ import { FormsModule } from '@angular/forms';
     CommonModule,
     BooksRoutingModule,
     RatingComponent,
-    FormsModule
+    ReactiveFormsModule
   ],
   exports: [
     DashboardComponent
