@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Observable, of, from, timer, interval, ReplaySubject, map, filter } from 'rxjs';
+import { Observable, of, from, timer, interval, ReplaySubject, map, filter, Subscriber, take, takeUntil, tap } from 'rxjs';
 
 @Component({
   selector: 'rxw-creating',
@@ -22,7 +22,68 @@ export class CreatingComponent {
 
     /******************************/
 
-    
+    // of('A', 'B', 'C')
+    // from([1,2,3,4,5,6])
+    // timer(3000) // ---------0|
+    // interval(1000) ---0---1---2---3---4---5--- ...
+    // timer(0, 1000) 0---1---2---3---4---5--- ...
+
+    timer(0, 1000).pipe(
+      map(e => e * 3),
+      filter(e => e % 2 === 0)
+    ).subscribe({
+      next: e => this.log(e),
+      complete: () => this.log('COMPLETE'),
+    });
+
+
+
+
+
+
+    /******************************/
+
+
+    function producer(sub: Subscriber<number>) {
+      const result = Math.random();
+      sub.next(result);
+
+      sub.next(5);
+      setTimeout(() => sub.next(6), 1000);
+      setTimeout(() => sub.complete(), 5000);
+
+      const myinterval = setInterval(() => {
+        sub.next(Date.now());
+        console.log('XXX', Date.now());
+      }, 1000)
+
+      // Teardown Logic
+      return () => {
+        console.log('Teardown Logic')
+        clearInterval(myinterval);
+      }
+    }
+
+    const obs = {
+      next: (value: number) => console.log(value),
+      error: (err: any) => console.error(err),
+      complete: () => console.log('COMPLETE')
+    }
+
+    // producer(obs);
+    // Finnische Notation
+    const myObservable$ = new Observable(producer);
+    const myObservable2$ = new Observable((sub) => {
+      sub.next(1)
+      sub.next(2)
+      sub.next(3)
+    });
+
+    // myObservable$.subscribe(obs);
+    // setTimeout(() => subscription.unsubscribe(), 5000);
+
+
+
     /******************************/
   }
 
