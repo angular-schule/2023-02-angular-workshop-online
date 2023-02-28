@@ -16,8 +16,9 @@ export class BookCreateComponent {
       nonNullable: true,
       validators: [
         Validators.required,
+        Validators.pattern(/\d/), // /^[0-9]*$/
         Validators.minLength(10),
-        Validators.maxLength(13)
+        Validators.maxLength(13),
       ]
     }),
     title: new FormControl('', {
