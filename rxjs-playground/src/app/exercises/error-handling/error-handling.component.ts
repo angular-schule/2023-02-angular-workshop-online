@@ -35,7 +35,8 @@ export class ErrorHandlingComponent {
         // Fehler ersetzen
         // return of('Nichts passiert!');
         // return interval(1000);
-      })
+      }),
+      retry(5)
     ).subscribe({
       next: e => this.logStream$.next(e),
       error: err => this.logStream$.next('❌ ERROR: ' + err)
